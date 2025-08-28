@@ -6,25 +6,37 @@ import { useState } from 'react';
 
 export default function AddProductPage() {
   const { data: session, status } = useSession();
-  const [form, setForm] = useState({ name: '', description: '', price: '' });
+  const [form, setForm] = useState({ name: '', description: '', price: '', image: null });
   const [message, setMessage] = useState('');
 
- if (status === 'loading') return <p>Loading...</p>;
+  if (status === 'loading') return <p>Loading...</p>;
   if (!session) return redirect('/login');
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    if (e.target.name === 'image') {
+      setForm({ ...form, image: e.target.files[0] });
+    } else {
+      setForm({ ...form, [e.target.name]: e.target.value });
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('name', form.name);
+    formData.append('description', form.description);
+    formData.append('price', form.price);
+    if (form.image) formData.append('image', form.image);
+
     const res = await fetch('/api/products', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: form.name, description: form.description, price: Number(form.price) }),
+      body: formData,
     });
 
     if (res.ok) {
       setMessage('Product added successfully!');
-      setForm({ name: '', description: '', price: '' });
+      setForm({ name: '', description: '', price: '', image: null });
     } else {
       setMessage('Error adding product');
     }
@@ -71,6 +83,13 @@ export default function AddProductPage() {
             onChange={handleChange}
             required
             className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            type="file"
+            name="image"
+            accept="image/*"
+            onChange={handleChange}
+            className="w-full p-2 border rounded-lg"
           />
 
           <button

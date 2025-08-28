@@ -27,7 +27,7 @@ const products = [
 export default function HeroCarousel() {
   const [current, setCurrent] = useState(0);
 
-  // Auto-slide every 4 seconds
+ 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % products.length);
@@ -49,7 +49,7 @@ export default function HeroCarousel() {
             alt={product.name}
             className="w-full h-full object-contain"
           />
-          {/* Overlay */}
+        
           <div className="absolute inset-0  bg-opacity-50 flex flex-col justify-center items-center text-center px-4">
             <h2 className="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
               {product.name}
@@ -62,7 +62,6 @@ export default function HeroCarousel() {
         </div>
       ))}
 
-      {/* Navigation Dots */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3">
         {products.map((_, idx) => (
           <button

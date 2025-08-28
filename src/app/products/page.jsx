@@ -14,7 +14,7 @@ export default function ProductsPage() {
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
-      {/* Page Header */}
+    
       <div className="max-w-7xl mx-auto mb-8 flex justify-between items-center">
         <h1 className="text-3xl font-bold text-gray-800">Our Products</h1>
         <Link
@@ -25,7 +25,7 @@ export default function ProductsPage() {
         </Link>
       </div>
 
-      {/* Products Grid */}
+      
       <div className="max-w-7xl mx-auto grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {products.length === 0 && (
           <p className="text-gray-500 col-span-full text-center">No products available.</p>

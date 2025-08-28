@@ -1,37 +1,20 @@
 'use client';
-import { GoogleLogin } from '@react-oauth/google';
-import jwt_decode from "jwt-decode";
+
+import { signIn } from 'next-auth/react';
 
 export default function LoginPage() {
-  const handleLoginSuccess = (credentialResponse) => {
-    const decoded = jwt_decode(credentialResponse.credential);
-    console.log("User info:", decoded);
-    // send token to your backend if needed
-  };
-
-  const handleLoginError = () => {
-    console.log("Login Failed");
-  };
-
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="bg-white shadow-2xl rounded-2xl p-10 w-96 text-center">
-        {/* Logo / Title */}
-        <h1 className="text-3xl font-bold text-gray-800 mb-6">Welcome to My Shop</h1>
-        <p className="text-gray-500 mb-8">Sign in to continue</p>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-500 to-pink-500 px-4">
+      <div className="bg-white p-10 rounded-2xl shadow-2xl w-full max-w-md text-center">
+        <h1 className="text-3xl font-bold mb-6 text-gray-800">Login to My Shop</h1>
+        <p className="text-gray-500 mb-8">Use Google to sign in quickly</p>
 
-        {/* Google Login Button */}
-        <div className="flex justify-center">
-          <GoogleLogin
-            onSuccess={handleLoginSuccess}
-            onError={handleLoginError}
-          />
-        </div>
-
-        {/* Optional footer */}
-        <p className="text-gray-400 text-sm mt-6">
-          By signing in, you agree to our <span className="underline">Terms</span> & <span className="underline">Privacy Policy</span>.
-        </p>
+        <button
+          onClick={() => signIn('google')}
+          className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition"
+        >
+          Sign in with Google
+        </button>
       </div>
     </div>
   );

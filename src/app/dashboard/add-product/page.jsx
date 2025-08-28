@@ -9,7 +9,7 @@ export default function AddProductPage() {
   const [form, setForm] = useState({ name: '', description: '', price: '' });
   const [message, setMessage] = useState('');
 
-  if (status === 'loading') return <p className="text-center mt-20">Loading...</p>;
+ if (status === 'loading') return <p>Loading...</p>;
   if (!session) return redirect('/login');
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });

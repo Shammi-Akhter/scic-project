@@ -1,7 +1,7 @@
 # My Shop
 
 ## Project Description
-**My Shop** is a modern e-commerce web application built with **Next.js 15**, **Tailwind CSS**, and **NextAuth.js** for authentication. Users can view products, see product details, and authenticated users can add new products.  
+**My Shop** is a modern (under development) e-commerce web application built with **Next.js 15**, **Tailwind CSS**, and **NextAuth.js** for authentication. Users can view products, see product details, and authenticated users can add new products.  
 
 **Features include:**  
 - Google login authentication using NextAuth.js + JWT.  
@@ -9,7 +9,7 @@
 - Product Highlights page in a responsive grid layout (6 products).  
 - Authenticated users can add products with image, name, description, and price.  
 - Full-screen Hero Carousel showcasing featured products with smooth transitions.  
-- Responsive design for mobile, tablet, and desktop.
+- Responsive design for mobile, tablet, and desktop. (Under development)
 
 ---
 
